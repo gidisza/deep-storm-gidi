@@ -42,9 +42,12 @@ class DataGenerator:
         for idx, frame in enumerate(self.frames_stack):
             frame_up_sampled = cv2.resize(frame,None,fx=self.upsampling_factor,fy = self.upsampling_factor,interpolation=cv2.INTER_NEAREST)
             filtered_data = csv_file_reader[csv_file_reader["frame"] == idx+1] # frames counting start from 1
-            xs = np.array(filtered_data["x [nm]"].tolist())
-            ys = np.array(filtered_data["y [nm]"].tolist())
-            xs = []
+            xs = np.array([max(min(x / self.pixel_size_to_upsampling_factor_ratio, self.upsampled_frame_width - 1), 0) for x in filtered_data["x [nm]"].tolist()]).astype(np.int)
+            ys = np.array([max(min(y / self.pixel_size_to_upsampling_factor_ratio, self.upsampled_frame_height - 1), 0) for y in filtered_data["y [nm]"].tolist()]).astype(np.int)
+            spikes_image = np.zeros((self.upsampled_frame_width,self.upsampled_frame_height))
+            spikes_image[xs,ys] = 1
+            heat_map_tmp = cv2.filter2D(spikes_image,-1,gaussian_kernel)
+
         # for index, row in csv_file_reader.iterrows():
 
 
