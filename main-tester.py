@@ -6,7 +6,8 @@ gen = DataGenerator(upsampling_factor=8,
                     patch_before_upsample=26,
                     min_emitters=7,
                     max_examples=10000,
-                    working_dir=r"C:\repos\deep-storm-new\Deep-STORM\demo 1 - Simulated Microtubules",
-                    tiff_file_name=r"C:\repos\deep-storm-new\Deep-STORM\demo 1 - Simulated Microtubules\ArtificialDataset_demo1.tif",
-                    csv_file_name=r"C:\repos\deep-storm-new\Deep-STORM\demo 1 - Simulated Microtubules\positions_demo1.csv")
+                    working_dir=r"../Deep-STORM/demo 1 - Simulated Microtubules",
+                    tiff_file_name=r"../Deep-STORM/demo 1 - Simulated Microtubules\ArtificialDataset_demo1.tif",
+                    csv_file_name=r"../Deep-STORM/demo 1 - Simulated Microtubules\positions_demo1.csv")
 gen.generate()
+
